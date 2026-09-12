@@ -1,0 +1,510 @@
+```html
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgriNova Admin</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Tahoma,Arial,sans-serif;
+      background:#07140f;
+      color:#f5f1df;
+    }
+    .wrap{
+      max-width:1000px;
+      margin:0 auto;
+      padding:30px 18px;
+    }
+    .card{
+      background:#0d2119;
+      border:1px solid #9b7b32;
+      border-radius:16px;
+      padding:24px;
+      margin-bottom:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    h1,h2{margin-top:0;color:#d8b65c}
+    label{
+      display:block;
+      margin:14px 0 7px;
+      font-weight:bold;
+    }
+    input,textarea,select{
+      width:100%;
+      border:1px solid #496653;
+      border-radius:10px;
+      background:#07140f;
+      color:#fff;
+      padding:12px;
+      font-size:15px;
+      outline:none;
+    }
+    textarea{
+      min-height:130px;
+      resize:vertical;
+    }
+    button{
+      border:0;
+      border-radius:10px;
+      padding:12px 20px;
+      cursor:pointer;
+      font-weight:bold;
+      margin-top:15px;
+      background:#c9a64d;
+      color:#07140f;
+    }
+    button:hover{opacity:.9}
+    .danger{background:#9b3d3d;color:#fff}
+    .success{
+      color:#9fe0ae;
+      margin-top:15px;
+      min-height:22px;
+    }
+    .hidden{display:none}
+    .row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:15px;
+    }
+    .content-list{
+      margin-top:25px;
+    }
+    .item{
+      border:1px solid #294637;
+      border-radius:12px;
+      padding:15px;
+      margin-bottom:12px;
+      background:#091a13;
+    }
+    .item strong{
+      color:#d8b65c;
+    }
+    .item-value{
+      margin-top:8px;
+      white-space:pre-wrap;
+      color:#ddd;
+      line-height:1.7;
+    }
+    @media(max-width:700px){
+      .row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <div id="loginBox" class="card">
+    <h1>پنل مدیریت AgriNova</h1>
+
+    <label for="email">ایمیل مدیر</label>
+    <input id="email" type="email" autocomplete="username">
+
+    <label for="password">رمز عبور</label>
+    <input id="password" type="password" autocomplete="current-password">
+
+    <button id="loginBtn">ورود به پنل</button>
+
+    <div id="loginMessage" class="success"></div>
+  </div>
+
+
+  <div id="adminBox" class="hidden">
+
+    <div class="card">
+      <h1>مدیریت محتوای AgriNova</h1>
+      <p>از این قسمت می‌توانی محتوای چندزبانه سایت را مدیریت کنی.</p>
+
+      <button id="logoutBtn" class="danger">خروج از حساب مدیر</button>
+    </div>
+
+
+    <div class="card">
+      <h2>افزودن یا ویرایش محتوا</h2>
+
+      <div class="row">
+
+        <div>
+          <label for="language">زبان</label>
+          <select id="language">
+            <option value="fa">فارسی</option>
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="contentKey">کلید محتوا</label>
+          <input id="contentKey" placeholder="مثلاً heroTitle">
+        </div>
+
+      </div>
+
+      <label for="contentValue">محتوا</label>
+      <textarea id="contentValue" placeholder="متن موردنظر را وارد کنید"></textarea>
+
+      <button id="saveBtn">ذخیره محتوا</button>
+
+      <div id="saveMessage" class="success"></div>
+    </div>
+
+
+    <div class="card">
+      <h2>محتواهای ثبت‌شده</h2>
+
+      <button id="refreshBtn">به‌روزرسانی فهرست</button>
+
+      <div id="contentList" class="content-list"></div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+'use strict';
+
+/* =========================
+   Supabase Configuration
+========================= */
+
+const SUPABASE_URL =
+  'https://xtesglmnocexaxdgejbk.supabase.co';
+
+const SUPABASE_ANON_KEY =
+  'sb_publishable_ay7RDEig8IPSDTBXajbsKg_nWB4OPUO';
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+
+
+/* =========================
+   Elements
+========================= */
+
+const loginBox = document.getElementById('loginBox');
+const adminBox = document.getElementById('adminBox');
+
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+
+const loginBtn = document.getElementById('loginBtn');
+const logoutBtn = document.getElementById('logoutBtn');
+
+const languageInput = document.getElementById('language');
+const contentKeyInput = document.getElementById('contentKey');
+const contentValueInput = document.getElementById('contentValue');
+
+const saveBtn = document.getElementById('saveBtn');
+const refreshBtn = document.getElementById('refreshBtn');
+
+const loginMessage = document.getElementById('loginMessage');
+const saveMessage = document.getElementById('saveMessage');
+const contentList = document.getElementById('contentList');
+
+
+/* =========================
+   Login
+========================= */
+
+loginBtn.addEventListener('click', async () => {
+
+  loginMessage.textContent = 'در حال ورود...';
+
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+
+  if (!email || !password) {
+    loginMessage.textContent =
+      'ایمیل و رمز عبور را وارد کنید.';
+    return;
+  }
+
+  const { error } =
+    await supabaseClient.auth.signInWithPassword({
+      email,
+      password
+    });
+
+  if (error) {
+    loginMessage.textContent =
+      'ورود ناموفق بود: ' + error.message;
+    return;
+  }
+
+  loginMessage.textContent =
+    'ورود موفق بود.';
+
+  showAdmin();
+  loadContent();
+
+});
+
+
+/* =========================
+   Logout
+========================= */
+
+logoutBtn.addEventListener('click', async () => {
+
+  await supabaseClient.auth.signOut();
+
+  showLogin();
+
+});
+
+
+/* =========================
+   Save Content
+========================= */
+
+saveBtn.addEventListener('click', async () => {
+
+  saveMessage.textContent =
+    'در حال ذخیره...';
+
+  const language =
+    languageInput.value;
+
+  const contentKey =
+    contentKeyInput.value.trim();
+
+  const contentValue =
+    contentValueInput.value;
+
+  if (!contentKey) {
+    saveMessage.textContent =
+      'کلید محتوا را وارد کنید.';
+    return;
+  }
+
+  const {
+    data: { user }
+  } = await supabaseClient.auth.getUser();
+
+  if (!user) {
+    saveMessage.textContent =
+      'ابتدا وارد حساب مدیر شوید.';
+    showLogin();
+    return;
+  }
+
+  const { error } =
+    await supabaseClient
+      .from('site_content')
+      .upsert(
+        {
+          content_key: contentKey,
+          language: language,
+          content_value: contentValue,
+          updated_at: new Date().toISOString()
+        },
+        {
+          onConflict: 'content_key,language'
+        }
+      );
+
+  if (error) {
+
+    saveMessage.textContent =
+      'خطا در ذخیره: ' + error.message;
+
+    return;
+  }
+
+  saveMessage.textContent =
+    'محتوا با موفقیت ذخیره شد.';
+
+  loadContent();
+
+});
+
+
+/* =========================
+   Load Content
+========================= */
+
+async function loadContent() {
+
+  contentList.innerHTML =
+    'در حال دریافت اطلاعات...';
+
+  const {
+    data,
+    error
+  } = await supabaseClient
+    .from('site_content')
+    .select('*')
+    .order('language')
+    .order('content_key');
+
+  if (error) {
+
+    contentList.innerHTML =
+      '<p>خطا در دریافت اطلاعات: ' +
+      escapeHtml(error.message) +
+      '</p>';
+
+    return;
+  }
+
+  if (!data || data.length === 0) {
+
+    contentList.innerHTML =
+      '<p>هنوز محتوایی ثبت نشده است.</p>';
+
+    return;
+  }
+
+  contentList.innerHTML = '';
+
+  data.forEach(item => {
+
+    const div =
+      document.createElement('div');
+
+    div.className = 'item';
+
+    div.innerHTML = `
+      <strong>${escapeHtml(item.content_key)}</strong>
+      <div>زبان: ${escapeHtml(item.language)}</div>
+      <div class="item-value">
+        ${escapeHtml(item.content_value)}
+      </div>
+      <button
+        type="button"
+        data-key="${escapeHtml(item.content_key)}"
+        data-lang="${escapeHtml(item.language)}"
+        class="editBtn">
+        ویرایش
+      </button>
+    `;
+
+    contentList.appendChild(div);
+
+  });
+
+  document
+    .querySelectorAll('.editBtn')
+    .forEach(button => {
+
+      button.addEventListener('click', () => {
+
+        const key =
+          button.dataset.key;
+
+        const lang =
+          button.dataset.lang;
+
+        const item =
+          data.find(
+            x =>
+              x.content_key === key &&
+              x.language === lang
+          );
+
+        if (!item) return;
+
+        languageInput.value =
+          item.language;
+
+        contentKeyInput.value =
+          item.content_key;
+
+        contentValueInput.value =
+          item.content_value;
+
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+
+      });
+
+    });
+
+}
+
+
+/* =========================
+   Session Check
+========================= */
+
+async function checkSession() {
+
+  const {
+    data: { session }
+  } = await supabaseClient.auth.getSession();
+
+  if (session) {
+
+    showAdmin();
+    loadContent();
+
+  } else {
+
+    showLogin();
+
+  }
+
+}
+
+
+/* =========================
+   UI
+========================= */
+
+function showAdmin() {
+
+  loginBox.classList.add('hidden');
+  adminBox.classList.remove('hidden');
+
+}
+
+
+function showLogin() {
+
+  adminBox.classList.add('hidden');
+  loginBox.classList.remove('hidden');
+
+}
+
+
+/* =========================
+   HTML Escape
+========================= */
+
+function escapeHtml(value) {
+
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+
+}
+
+
+/* =========================
+   Start
+========================= */
+
+checkSession();
+
+</script>
+
+</body>
+</html>
+```
