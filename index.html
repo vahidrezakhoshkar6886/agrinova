@@ -170,7 +170,13 @@ document.getElementById('connectWallet').addEventListener('click', async ()=>{
   const t=translations[currentLang]||translations.en;
   if(window.solana && window.solana.isPhantom){try{const r=await window.solana.connect();showToast(t.walletDetected+r.publicKey.toString().slice(0,6)+'…'+r.publicKey.toString().slice(-4));}catch(e){showToast(t.walletCancelled);}}
   else showToast(t.walletMissing);
-});
+});<script>
+const SUPABASE_URL = 'https://xtesglmnocexaxdgejbk.supabase.co
+';
+const SUPABASE_ANON_KEY = 'sb_publishable_ay7RDEig8IPSDTBXajbsKg_nWB4OPUO';
+
+console.log('AgriNova Supabase connection configured:', SUPABASE_URL);
+</script>
 applyLanguage(currentLang);
 </script>
 </body>
