@@ -270,6 +270,7 @@
       </h3>
 
       <ul class="checks">
+
         <li data-i18n="mintDisabledProtection">
           Mint authority disabled after initial issuance
         </li>
@@ -297,6 +298,7 @@
         <li data-i18n="noLimits">
           No minimum, maximum or daily transfer limit
         </li>
+
       </ul>
     </article>
 
@@ -367,6 +369,7 @@
   <div class="grid two">
 
     <article class="feature">
+
       <div class="icon">01</div>
 
       <h3 data-i18n="loyaltyMedals">
@@ -376,10 +379,12 @@
       <p data-i18n="loyaltyText">
         Up to 200 numbered loyalty NFTs are planned for the launch community. They are collectible souvenirs, not promises of financial value.
       </p>
+
     </article>
 
 
     <article class="feature">
+
       <div class="icon">02</div>
 
       <h3 data-i18n="launchCampaign">
@@ -389,6 +394,7 @@
       <p data-i18n="campaignText">
         Community activities are planned around the token launch. Any paid random-prize mechanic will only be used where legally permitted.
       </p>
+
     </article>
 
   </div>
@@ -522,4 +528,951 @@
         Can the transfer fee change?
       </summary>
 
-      <p
+      <p data-i18n="faqFeeA">
+        The planned Token-2022 transfer-fee configuration is intentionally changeable by the authorized company governance, within the configured maximum fee.
+      </p>
+    </details>
+
+  </div>
+
+</section>
+
+
+<section class="cta">
+
+  <div>
+
+    <span class="eyebrow" data-i18n="officialSite">
+      OFFICIAL PROJECT SITE
+    </span>
+
+    <h2 data-i18n="ctaTitle">
+      Build the agricultural future with AgriNova.
+    </h2>
+
+    <p data-i18n="ctaText">
+      Public information. Verifiable records. No fabricated contract address.
+    </p>
+
+    <a class="btn primary" href="#transparency" data-i18n="checkTransparency">
+      Check transparency
+    </a>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <div>
+
+    <div class="brand">
+      <span class="brand-mark">AGN</span>
+      <span>AgriNova</span>
+    </div>
+
+    <p data-i18n="copyright">
+      © 2026 AgriNova. All project information is subject to update through the published transparency history.
+    </p>
+
+  </div>
+
+  <div class="footer-links">
+
+    <a href="#token" data-i18n="navToken">
+      Token
+    </a>
+
+    <a href="#tokenomics" data-i18n="navTokenomics">
+      Tokenomics
+    </a>
+
+    <a href="#transparency" data-i18n="navTransparency">
+      Transparency
+    </a>
+
+    <a href="#faq" data-i18n="navFaq">
+      FAQ
+    </a>
+
+  </div>
+
+</footer>
+
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+
+<script>
+'use strict';
+
+
+/* =========================================================
+   TRANSLATIONS
+   ========================================================= */
+
+const translations = {
+
+  en: {
+
+    navToken:'Token',
+    navTokenomics:'Tokenomics',
+    navTransparency:'Transparency',
+    navRoadmap:'Roadmap',
+    navFaq:'FAQ',
+    connectWallet:'Connect Wallet',
+
+    heroTitle:'Agriculture.<br><span>Innovation.</span><br>AgriNova.',
+
+    heroLead:'AgriNova is a utility-token project designed to support a future agricultural gaming ecosystem and its community.',
+
+    exploreAgn:'Explore AGN',
+    viewTransparency:'View transparency',
+
+    prelaunch:'Pre-launch status: the official mint address will be published here only after the real Solana deployment and verification.',
+
+    tokenTitle:'The Token',
+    network:'Network',
+    totalSupply:'Total supply',
+    decimals:'Decimals',
+
+    smallestUnit:'smallest unit: 0.000001 AGN',
+
+    initialFee:'Initial transfer fee',
+    companyConfig:'company-controlled configuration',
+
+    maxFee:'Maximum fee',
+    perTransfer:'AGN per transfer',
+
+    mintAuthority:'Mint authority',
+    disabled:'Disabled',
+    afterDistribution:'after full initial distribution',
+
+    tokenomicsTitle:'Tokenomics',
+
+    presale:'Presale',
+    marketing:'Marketing',
+    founder:'Founder',
+    game1:'Game 1',
+    game2:'Game 2',
+    game3:'Game 3',
+
+    gameAllocNote:'The three game allocations are reserved for future game systems. They are not a claim that those games are currently live.',
+
+    transparencyTitle:'Transparency',
+
+    verificationFirst:'Verification first.',
+
+    verificationText:'AgriNova will publish the real mint address, transaction signatures and authority status after deployment. No address is fabricated on this site.',
+
+    permanentProtections:'Permanent protections',
+
+    mintDisabledProtection:'Mint authority disabled after initial issuance',
+
+    freezeDisabled:'Freeze authority disabled',
+
+    noBlacklist:'No blacklist or whitelist',
+
+    noPause:'No pause mechanism',
+
+    noDelegate:'No permanent delegate',
+
+    noForced:'No forced transfers or confiscation',
+
+    noLimits:'No minimum, maximum or daily transfer limit',
+
+    changeable:'Changeable by design',
+
+    feeConfig:'Transfer fee configuration',
+
+    metadataUpdate:'Token metadata update',
+
+    management:'Management structure',
+
+    walletRecords:'Official wallet records, under governance controls',
+
+    historyNote:'Material changes are intended to be recorded on the public transparency history.',
+
+    officialMint:'OFFICIAL MINT ADDRESS',
+
+    notDeployed:'Not deployed yet',
+
+    fakeAddressWarning:'Do not trust any AGN contract address posted elsewhere before the official publication on this domain.',
+
+    communityTitle:'Community & Loyalty',
+
+    loyaltyMedals:'Loyalty Medals',
+
+    loyaltyText:'Up to 200 numbered loyalty NFTs are planned for the launch community. They are collectible souvenirs, not promises of financial value.',
+
+    launchCampaign:'Launch campaign',
+
+    campaignText:'Community activities are planned around the token launch. Any paid random-prize mechanic will only be used where legally permitted.',
+
+    roadmapTitle:'Roadmap',
+
+    foundation:'Foundation',
+
+    foundationText:'Brand, website, token architecture and public documentation.',
+
+    tokenLaunch:'Token launch',
+
+    tokenLaunchText:'Real Solana deployment, verification, liquidity setup and public transparency records.',
+
+    roadGame1:'Game 1',
+
+    roadGame1Text:'First agricultural game ecosystem and future AGN utility integration.',
+
+    roadGame2:'Game 2',
+
+    roadGame2Text:'Expansion of the ecosystem with the second planned game allocation.',
+
+    roadGame3:'Game 3',
+
+    roadGame3Text:'Long-term ecosystem expansion using the third reserved allocation.',
+
+    faqTitle:'FAQ',
+
+    faqLiveQ:'Is AGN live right now?',
+
+    faqLiveA:'The website can be published now, but the token contract is not represented as live until its real Solana deployment is completed and verified.',
+
+    faqSupplyQ:'What is the supply?',
+
+    faqSupplyA:'10 billion AGN with 6 decimals.',
+
+    faqReturnQ:'Is there a guaranteed return?',
+
+    faqReturnA:'No. AGN is presented as a utility-token project. No return, price or profit is guaranteed.',
+
+    faqVerifyQ:'What should I verify before buying?',
+
+    faqVerifyA:'Verify the official domain, the published mint address and the on-chain transaction records. Never use an address copied from an unofficial social account.',
+
+    faqFeeQ:'Can the transfer fee change?',
+
+    faqFeeA:'The planned Token-2022 transfer-fee configuration is intentionally changeable by the authorized company governance, within the configured maximum fee.',
+
+    officialSite:'OFFICIAL PROJECT SITE',
+
+    ctaTitle:'Build the agricultural future with AgriNova.',
+
+    ctaText:'Public information. Verifiable records. No fabricated contract address.',
+
+    checkTransparency:'Check transparency',
+
+    copyright:'© 2026 AgriNova. All project information is subject to update through the published transparency history.',
+
+    walletDetected:'Wallet connected: ',
+
+    walletCancelled:'Wallet connection was cancelled.',
+
+    walletMissing:'A Solana wallet extension/app was not detected. Wallet connection will be enabled for supported wallets at launch.'
+
+  },
+
+
+  fa: {
+
+    navToken:'توکن',
+    navTokenomics:'توکنومیک',
+    navTransparency:'شفافیت',
+    navRoadmap:'نقشه راه',
+    navFaq:'سؤالات متداول',
+    connectWallet:'اتصال کیف پول',
+
+    heroTitle:'کشاورزی.<br><span>نوآوری.</span><br>AgriNova.',
+
+    heroLead:'AgriNova یک پروژه توکن کاربردی است که برای پشتیبانی از یک اکوسیستم بازی کشاورزی و جامعه آن در آینده طراحی شده است.',
+
+    exploreAgn:'مشاهده AGN',
+    viewTransparency:'مشاهده شفافیت',
+
+    prelaunch:'وضعیت پیش از عرضه: آدرس رسمی مینت فقط پس از استقرار واقعی روی سولانا و تأیید آن در اینجا منتشر خواهد شد.',
+
+    tokenTitle:'توکن',
+
+    network:'شبکه',
+
+    totalSupply:'عرضه کل',
+
+    decimals:'اعشار',
+
+    smallestUnit:'کوچک‌ترین واحد: 0.000001 AGN',
+
+    initialFee:'کارمزد اولیه انتقال',
+
+    companyConfig:'پیکربندی تحت اختیار شرکت',
+
+    maxFee:'حداکثر کارمزد',
+
+    perTransfer:'AGN در هر انتقال',
+
+    mintAuthority:'اختیار ایجاد توکن',
+
+    disabled:'غیرفعال',
+
+    afterDistribution:'پس از توزیع کامل اولیه',
+
+    tokenomicsTitle:'توکنومیک',
+
+    presale:'پیش‌فروش',
+
+    marketing:'بازاریابی',
+
+    founder:'بنیان‌گذار',
+
+    game1:'بازی ۱',
+
+    game2:'بازی ۲',
+
+    game3:'بازی ۳',
+
+    gameAllocNote:'سه سهم اختصاص‌یافته به بازی‌ها برای سامانه‌های بازی آینده رزرو شده‌اند و به معنای فعال بودن این بازی‌ها در حال حاضر نیستند.',
+
+    transparencyTitle:'شفافیت',
+
+    verificationFirst:'اول تأیید، سپس اعتماد.',
+
+    verificationText:'AgriNova پس از استقرار، آدرس واقعی مینت، امضاهای تراکنش و وضعیت اختیارها را منتشر خواهد کرد. هیچ آدرسی در این سایت جعل یا حدس زده نمی‌شود.',
+
+    permanentProtections:'حفاظت‌های دائمی',
+
+    mintDisabledProtection:'غیرفعال شدن اختیار مینت پس از صدور اولیه',
+
+    freezeDisabled:'اختیار فریز غیرفعال',
+
+    noBlacklist:'بدون بلک‌لیست یا وایت‌لیست',
+
+    noPause:'بدون سازوکار توقف',
+
+    noDelegate:'بدون نماینده دائمی',
+
+    noForced:'بدون انتقال اجباری یا مصادره',
+
+    noLimits:'بدون حداقل، حداکثر یا سقف روزانه انتقال',
+
+    changeable:'موارد قابل تغییر',
+
+    feeConfig:'پیکربندی کارمزد انتقال',
+
+    metadataUpdate:'به‌روزرسانی متادیتای توکن',
+
+    management:'ساختار مدیریت',
+
+    walletRecords:'سوابق کیف پول‌های رسمی، تحت کنترل‌های حاکمیتی',
+
+    historyNote:'تغییرات مهم قرار است در تاریخچه عمومی شفافیت ثبت شوند.',
+
+    officialMint:'آدرس رسمی مینت',
+
+    notDeployed:'هنوز مستقر نشده',
+
+    fakeAddressWarning:'پیش از انتشار رسمی در این دامنه، به هیچ آدرس قرارداد AGN که در جای دیگری منتشر شده اعتماد نکنید.',
+
+    communityTitle:'جامعه و وفاداری',
+
+    loyaltyMedals:'مدال‌های وفاداری',
+
+    loyaltyText:'برنامه‌ریزی برای حداکثر ۲۰۰ NFT شماره‌دار وفاداری برای جامعه زمان عرضه انجام شده است. این موارد یادبودهای کلکسیونی هستند و وعده ارزش مالی ندارند.',
+
+    launchCampaign:'کمپین عرضه',
+
+    campaignText:'فعالیت‌های اجتماعی پیرامون عرضه توکن برنامه‌ریزی شده‌اند. هر سازوکار جایزه تصادفی پولی فقط در صورت مجاز بودن قانونی استفاده خواهد شد.',
+
+    roadmapTitle:'نقشه راه',
+
+    foundation:'بنیان‌گذاری',
+
+    foundationText:'برند، وب‌سایت، معماری توکن و مستندات عمومی.',
+
+    tokenLaunch:'عرضه توکن',
+
+    tokenLaunchText:'استقرار واقعی روی سولانا، تأیید، راه‌اندازی نقدینگی و ثبت عمومی سوابق شفافیت.',
+
+    roadGame1:'بازی ۱',
+
+    roadGame1Text:'اولین اکوسیستم بازی کشاورزی و یکپارچه‌سازی کاربرد آینده AGN.',
+
+    roadGame2:'بازی ۲',
+
+    roadGame2Text:'گسترش اکوسیستم با دومین سهم اختصاص‌یافته به بازی.',
+
+    roadGame3:'بازی ۳',
+
+    roadGame3Text:'گسترش بلندمدت اکوسیستم با استفاده از سومین سهم رزرو شده.',
+
+    faqTitle:'سؤالات متداول',
+
+    faqLiveQ:'آیا AGN در حال حاضر فعال است؟',
+
+    faqLiveA:'وب‌سایت اکنون می‌تواند منتشر باشد، اما تا زمان تکمیل و تأیید استقرار واقعی توکن روی سولانا، قرارداد به‌عنوان فعال معرفی نمی‌شود.',
+
+    faqSupplyQ:'عرضه توکن چقدر است؟',
+
+    faqSupplyA:'۱۰ میلیارد AGN با ۶ رقم اعشار.',
+
+    faqReturnQ:'آیا بازدهی تضمین‌شده وجود دارد؟',
+
+    faqReturnA:'خیر. AGN به‌عنوان یک پروژه توکن کاربردی معرفی می‌شود و هیچ بازده، قیمت یا سودی تضمین نمی‌شود.',
+
+    faqVerifyQ:'قبل از خرید چه چیزهایی را باید بررسی کنم؟',
+
+    faqVerifyA:'دامنه رسمی، آدرس منتشرشده مینت و سوابق تراکنش‌های روی زنجیره را بررسی کنید. هرگز از آدرسی که از یک حساب اجتماعی غیررسمی کپی شده استفاده نکنید.',
+
+    faqFeeQ:'آیا کارمزد انتقال می‌تواند تغییر کند؟',
+
+    faqFeeA:'پیکربندی کارمزد انتقال Token-2022 طبق طراحی، توسط حاکمیت مجاز شرکت و در محدوده حداکثر کارمزد تنظیم‌شده قابل تغییر است.',
+
+    officialSite:'وب‌سایت رسمی پروژه',
+
+    ctaTitle:'ساخت آینده کشاورزی با AgriNova.',
+
+    ctaText:'اطلاعات عمومی. سوابق قابل راستی‌آزمایی. بدون آدرس قرارداد جعلی.',
+
+    checkTransparency:'بررسی شفافیت',
+
+    copyright:'© ۲۰۲۶ AgriNova. همه اطلاعات پروژه ممکن است از طریق تاریخچه عمومی شفافیت به‌روزرسانی شوند.',
+
+    walletDetected:'کیف پول متصل شد: ',
+
+    walletCancelled:'اتصال کیف پول لغو شد.',
+
+    walletMissing:'افزونه یا برنامه کیف پول سولانا شناسایی نشد. اتصال کیف پول‌های پشتیبانی‌شده در زمان عرضه فعال خواهد شد.'
+
+  },
+
+
+  ar: {
+
+    navToken:'الرمز',
+
+    navTokenomics:'اقتصاديات الرمز',
+
+    navTransparency:'الشفافية',
+
+    navRoadmap:'خارطة الطريق',
+
+    navFaq:'الأسئلة الشائعة',
+
+    connectWallet:'ربط المحفظة',
+
+    heroTitle:'الزراعة.<br><span>الابتكار.</span><br>AgriNova.',
+
+    heroLead:'AgriNova هو مشروع رمز مميز للاستخدام مصمم لدعم منظومة ألعاب زراعية مستقبلية ومجتمعها.',
+
+    exploreAgn:'استكشف AGN',
+
+    viewTransparency:'عرض الشفافية',
+
+    prelaunch:'حالة ما قبل الإطلاق: لن يتم نشر عنوان الـ Mint الرسمي هنا إلا بعد الإطلاق الحقيقي على Solana والتحقق منه.',
+
+    tokenTitle:'الرمز',
+
+    network:'الشبكة',
+
+    totalSupply:'إجمالي المعروض',
+
+    decimals:'الخانات العشرية',
+
+    smallestUnit:'أصغر وحدة: 0.000001 AGN',
+
+    initialFee:'رسوم التحويل الأولية',
+
+    companyConfig:'إعدادات تحت إدارة الشركة',
+
+    maxFee:'الحد الأقصى للرسوم',
+
+    perTransfer:'AGN لكل تحويل',
+
+    mintAuthority:'صلاحية إنشاء الرموز',
+
+    disabled:'معطلة',
+
+    afterDistribution:'بعد التوزيع الأولي الكامل',
+
+    tokenomicsTitle:'اقتصاديات الرمز',
+
+    presale:'البيع المسبق',
+
+    marketing:'التسويق',
+
+    founder:'المؤسس',
+
+    game1:'اللعبة 1',
+
+    game2:'اللعبة 2',
+
+    game3:'اللعبة 3',
+
+    gameAllocNote:'الحصص الثلاث المخصصة للألعاب محجوزة لأنظمة ألعاب مستقبلية، ولا تعني أن هذه الألعاب متاحة حالياً.',
+
+    transparencyTitle:'الشفافية',
+
+    verificationFirst:'التحقق أولاً.',
+
+    verificationText:'ستنشر AgriNova عنوان الـ Mint الحقيقي وتوقيعات المعاملات وحالة الصلاحيات بعد الإطلاق. لا يوجد عنوان مختلق على هذا الموقع.',
+
+    permanentProtections:'حمايات دائمة',
+
+    mintDisabledProtection:'تعطيل صلاحية الـ Mint بعد الإصدار الأولي',
+
+    freezeDisabled:'تعطيل صلاحية التجميد',
+
+    noBlacklist:'لا توجد قائمة سوداء أو بيضاء',
+
+    noPause:'لا توجد آلية إيقاف',
+
+    noDelegate:'لا توجد صلاحية تفويض دائمة',
+
+    noForced:'لا توجد تحويلات إجبارية أو مصادرة',
+
+    noLimits:'لا يوجد حد أدنى أو أقصى أو يومي للتحويل',
+
+    changeable:'قابلة للتغيير حسب التصميم',
+
+    feeConfig:'إعدادات رسوم التحويل',
+
+    metadataUpdate:'تحديث بيانات الرمز',
+
+    management:'هيكل الإدارة',
+
+    walletRecords:'سجلات المحافظ الرسمية، وفق ضوابط الحوكمة',
+
+    historyNote:'من المقرر تسجيل التغييرات الجوهرية في سجل الشفافية العام.',
+
+    officialMint:'عنوان الـ Mint الرسمي',
+
+    notDeployed:'لم يتم الإطلاق بعد',
+
+    fakeAddressWarning:'لا تثق بأي عنوان لعقد AGN منشور في مكان آخر قبل نشر العنوان الرسمي على هذا النطاق.',
+
+    communityTitle:'المجتمع والولاء',
+
+    loyaltyMedals:'ميداليات الولاء',
+
+    loyaltyText:'من المخطط إصدار ما يصل إلى 200 NFT مرقمة للولاء لمجتمع الإطلاق. وهي مقتنيات تذكارية وليست وعوداً بقيمة مالية.',
+
+    launchCampaign:'حملة الإطلاق',
+
+    campaignText:'تم التخطيط لأنشطة مجتمعية حول إطلاق الرمز. ولن تستخدم أي آلية جوائز عشوائية مدفوعة إلا حيث يسمح القانون بذلك.',
+
+    roadmapTitle:'خارطة الطريق',
+
+    foundation:'التأسيس',
+
+    foundationText:'العلامة التجارية والموقع وبنية الرمز والوثائق العامة.',
+
+    tokenLaunch:'إطلاق الرمز',
+
+    tokenLaunchText:'إطلاق Solana الحقيقي والتحقق وإعداد السيولة وسجلات الشفافية العامة.',
+
+    roadGame1:'اللعبة 1',
+
+    roadGame1Text:'أول منظومة ألعاب زراعية ودمج الاستخدام المستقبلي لـ AGN.',
+
+    roadGame2:'اللعبة 2',
+
+    roadGame2Text:'توسيع المنظومة باستخدام الحصة الثانية المخصصة للعبة.',
+
+    roadGame3:'اللعبة 3',
+
+    roadGame3Text:'توسيع المنظومة على المدى الطويل باستخدام الحصة الثالثة المحجوزة.',
+
+    faqTitle:'الأسئلة الشائعة',
+
+    faqLiveQ:'هل AGN متاح الآن؟',
+
+    faqLiveA:'يمكن نشر الموقع الآن، لكن لن يتم تقديم عقد الرمز على أنه نشط حتى يكتمل إطلاقه الحقيقي على Solana والتحقق منه.',
+
+    faqSupplyQ:'ما إجمالي المعروض؟',
+
+    faqSupplyA:'10 مليارات AGN مع 6 خانات عشرية.',
+
+    faqReturnQ:'هل توجد عوائد مضمونة؟',
+
+    faqReturnA:'لا. يتم تقديم AGN كمشروع رمز للاستخدام. ولا توجد ضمانات لعائد أو سعر أو ربح.',
+
+    faqVerifyQ:'ماذا يجب أن أتحقق منه قبل الشراء؟',
+
+    faqVerifyA:'تحقق من النطاق الرسمي وعنوان الـ Mint المنشور وسجلات المعاملات على الشبكة. لا تستخدم أبداً عنواناً من حساب اجتماعي غير رسمي.',
+
+    faqFeeQ:'هل يمكن تغيير رسوم التحويل؟',
+
+    faqFeeA:'إعدادات رسوم التحويل المخططة لـ Token-2022 قابلة للتغيير من قبل حوكمة الشركة المخولة ضمن الحد الأقصى المحدد للرسوم.',
+
+    officialSite:'الموقع الرسمي للمشروع',
+
+    ctaTitle:'نبني مستقبل الزراعة مع AgriNova.',
+
+    ctaText:'معلومات عامة. سجلات قابلة للتحقق. لا يوجد عنوان عقد مختلق.',
+
+    checkTransparency:'تحقق من الشفافية',
+
+    copyright:'© 2026 AgriNova. تخضع جميع معلومات المشروع للتحديث عبر سجل الشفافية المنشور.',
+
+    walletDetected:'تم ربط المحفظة: ',
+
+    walletCancelled:'تم إلغاء ربط المحفظة.',
+
+    walletMissing:'لم يتم اكتشاف إضافة أو تطبيق لمحفظة Solana. سيتم تفعيل دعم المحافظ المتوافقة عند الإطلاق.'
+
+  }
+
+};
+
+
+/* =========================================================
+   SUPABASE CONFIGURATION
+   ========================================================= */
+
+const SUPABASE_URL =
+  'https://xtesglmnocexaxdgejbk.supabase.co';
+
+const SUPABASE_ANON_KEY =
+  'sb_publishable_ay7RDEig8IPSDTBXajbsKg_nWB4OPUO';
+
+
+/* =========================================================
+   SUPABASE CLIENT
+   ========================================================= */
+
+const supabaseClient =
+  window.supabase
+    ? window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+      )
+    : null;
+
+
+/* =========================================================
+   LANGUAGE
+   ========================================================= */
+
+const toast = document.getElementById('toast');
+
+let currentLang =
+  localStorage.getItem('agrinova-lang') || 'en';
+
+
+function applyLanguage(lang) {
+
+  if (!translations[lang]) {
+    lang = 'en';
+  }
+
+  const t = translations[lang];
+
+  document.documentElement.lang = lang;
+
+  document.documentElement.dir =
+    lang === 'en' ? 'ltr' : 'rtl';
+
+
+  document
+    .querySelectorAll('[data-i18n]')
+    .forEach((el) => {
+
+      const key = el.dataset.i18n;
+
+      if (
+        Object.prototype.hasOwnProperty.call(
+          t,
+          key
+        )
+      ) {
+
+        el.innerHTML = t[key];
+
+      }
+
+    });
+
+
+  document
+    .querySelectorAll('.lang-btn')
+    .forEach((button) => {
+
+      const active =
+        button.dataset.lang === lang;
+
+      button.classList.toggle(
+        'active',
+        active
+      );
+
+      button.setAttribute(
+        'aria-pressed',
+        active ? 'true' : 'false'
+      );
+
+    });
+
+
+  localStorage.setItem(
+    'agrinova-lang',
+    lang
+  );
+
+  currentLang = lang;
+
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+function showToast(message) {
+
+  if (!toast) return;
+
+  toast.textContent = message;
+
+  toast.classList.add('show');
+
+  window.clearTimeout(
+    showToast.timer
+  );
+
+  showToast.timer =
+    window.setTimeout(() => {
+
+      toast.classList.remove('show');
+
+    }, 3600);
+
+}
+
+
+/* =========================================================
+   LANGUAGE BUTTONS
+   ========================================================= */
+
+document
+  .querySelectorAll('.lang-btn')
+  .forEach((button) => {
+
+    button.addEventListener(
+      'click',
+      async () => {
+
+        const lang =
+          button.dataset.lang;
+
+        applyLanguage(lang);
+
+        /*
+         * بعد از تغییر زبان، محتوای ذخیره‌شده
+         * در Supabase نیز دوباره بارگذاری می‌شود.
+         */
+        await loadSiteContent();
+
+      }
+    );
+
+  });
+
+
+/* =========================================================
+   WALLET
+   ========================================================= */
+
+const connectWalletButton =
+  document.getElementById(
+    'connectWallet'
+  );
+
+
+if (connectWalletButton) {
+
+  connectWalletButton.addEventListener(
+    'click',
+    async () => {
+
+      const t =
+        translations[currentLang]
+        || translations.en;
+
+
+      if (
+        window.solana &&
+        window.solana.isPhantom
+      ) {
+
+        try {
+
+          const response =
+            await window.solana.connect();
+
+
+          const publicKey =
+            response.publicKey.toString();
+
+
+          showToast(
+            t.walletDetected +
+            publicKey.slice(0, 6) +
+            '…' +
+            publicKey.slice(-4)
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            'Wallet connection cancelled or failed:',
+            error
+          );
+
+          showToast(
+            t.walletCancelled
+          );
+
+        }
+
+      } else {
+
+        showToast(
+          t.walletMissing
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   LOAD SITE CONTENT FROM SUPABASE
+   ========================================================= */
+
+async function loadSiteContent() {
+
+  if (!supabaseClient) {
+
+    console.error(
+      'Supabase client could not be initialized.'
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from('site_content')
+        .select(
+          'content_key, language, content_value'
+        );
+
+
+    if (error) {
+
+      console.error(
+        'Supabase content error:',
+        error
+      );
+
+      return;
+
+    }
+
+
+    if (
+      !data ||
+      data.length === 0
+    ) {
+
+      return;
+
+    }
+
+
+    /*
+     * فقط رکوردهای زبان فعلی سایت
+     * روی متن پیش‌فرض اعمال می‌شوند.
+     */
+
+    const currentItems =
+      data.filter(
+        (item) =>
+          item.language === currentLang
+      );
+
+
+    currentItems.forEach(
+      (item) => {
+
+        /*
+         * به جای ساختن selector با کلید،
+         * همه عناصر data-i18n را بررسی می‌کنیم.
+         * این روش امن‌تر است.
+         */
+
+        document
+          .querySelectorAll(
+            '[data-i18n]'
+          )
+          .forEach((el) => {
+
+            if (
+              el.dataset.i18n ===
+              item.content_key
+            ) {
+
+              el.innerHTML =
+                item.content_value;
+
+            }
+
+          });
+
+      }
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      'Failed to load site content:',
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   START WEBSITE
+   ========================================================= */
+
+applyLanguage(
+  currentLang
+);
+
+
+/*
+ * ابتدا سایت با ترجمه‌های داخلی نمایش داده می‌شود،
+ * سپس محتوای قابل ویرایش Supabase روی آن اعمال می‌شود.
+ */
+
+loadSiteContent();
+
+</script>
+
+</body>
+</html>
